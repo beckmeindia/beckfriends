@@ -1060,49 +1060,7 @@ $(document).ready(function(){
 	function befrlogin(){
 		swal({ title: "Love to have you on board",   text: "Enter into your BECK Friends Account with Facebook",   type: "success",   showCancelButton: true,   confirmButtonColor: "#2bb1de",   confirmButtonText: "Go Ahead" }, function(){login()});		
 	}
-	
-	function callauto4(){		
-		var autocomplete = new google.maps.places.Autocomplete(document.getElementById('searchlocintr'));
-        autocomplete.bindTo('bounds', map);
-		setTimeout('$("body").css("visibility","visible");', 1000);
-        autocomplete.addListener('place_changed', function() {
-		  var place = autocomplete.getPlace();
-          if (!place.geometry) {
-           return;
-          }
-		  if (place.geometry.viewport) {
-            map.fitBounds(place.geometry.viewport);
-          } else {
-            map.setCenter(place.geometry.location);
-            map.setZoom(12); 
-			
-          } 
-			var center = place.geometry.location;
-			mycenter = center;
-			getReverseGeocodingData(center.lat(), center.lng());
-			geoQuery.updateCriteria({center: [center.lat(), center.lng()],  radius: 30});
-			if(path) path.setMap(null);
-			for (var i = 0; i < hotSpotMapMarkers.length; i++)
-			hotSpotMapMarkers[i].setMap(null);
-			if(path) path.setMap(null);
-			document.getElementById("rqstgist").style.display="none";
-			document.getElementById("pckgctr").innerHTML="Loading...";
-			var address = ''; rsltshow = 0; google.maps.event.trigger(map, 'resize');
-			$("#tflbckg").css("background-image", "");
-			$('.close-initModal').trigger('click');		
-			document.getElementById("mnuitm2").style.display="block";
-			document.getElementById("mnuitm1").style.display="block";
-			if (place.address_components) {
-            address = [
-              (place.address_components[0] && place.address_components[0].short_name || ''),
-              (place.address_components[1] && place.address_components[1].short_name || ''),
-              (place.address_components[2] && place.address_components[2].short_name || '')
-            ].join(' ');
-			
-          }          
-        });
-	}
-	
+
 	function callauto(){		
 		var autocomplete = new google.maps.places.Autocomplete(document.getElementById('searchloc'));
         autocomplete.bindTo('bounds', map);
@@ -1130,7 +1088,8 @@ $(document).ready(function(){
 			document.getElementById("pckgctr").innerHTML="Loading...";
 			var address = ''; rsltshow = 0; google.maps.event.trigger(map, 'resize');
 			$("#tflbckg").css("background-image", "");
-			$('.close-initModal').trigger('click');			
+			$('.close-initModal').trigger('click');	
+			document.getElementById("mnuitm").style.display="block";
 			if (place.address_components) {
             address = [
               (place.address_components[0] && place.address_components[0].short_name || ''),
