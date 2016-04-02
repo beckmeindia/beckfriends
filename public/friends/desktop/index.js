@@ -841,12 +841,11 @@ $(document).ready(function(){
 	function drawroute(picklat,picklng,delvlat,delvlng){	
 	for (var i = 0; i < hotSpotMapMarkers.length; i++)
     hotSpotMapMarkers[i].setMap(null);
-	map.setCenter(new google.maps.LatLng(picklat,picklng));
 	var flightPlanCoordinates = [{lat:picklat,lng:picklng},{lat:delvlat,lng:delvlng}];
 	var latlngbounds = new google.maps.LatLngBounds();
 	latlngbounds.extend(new google.maps.LatLng(picklat,picklng));
 	latlngbounds.extend(new google.maps.LatLng(delvlat,delvlng));
-	map.setCenter(latlngbounds.getCenter()); map.fitBounds(latlngbounds);
+
 	var polyLine = new google.maps.Polyline({
     path: flightPlanCoordinates,
     strokeColor: "#2bb1de",
@@ -870,6 +869,8 @@ $(document).ready(function(){
 	icon: "package.png",
     map: map
 	}));
+	map.fitBounds(latlngbounds);
+	map.setCenter(latlngbounds.getCenter()); 	
 	}
 	
 	function shwdetls(){
@@ -1059,11 +1060,53 @@ $(document).ready(function(){
 	function befrlogin(){
 		swal({ title: "Love to have you on board",   text: "Enter into your BECK Friends Account with Facebook",   type: "success",   showCancelButton: true,   confirmButtonColor: "#2bb1de",   confirmButtonText: "Go Ahead" }, function(){login()});		
 	}
-	function callauto(){		
-		var autocomplete = new google.maps.places.Autocomplete(document.getElementById('searchloc'));
+	
+	function callauto4(){		
+		var autocomplete = new google.maps.places.Autocomplete(document.getElementById('searchlocintr'));
         autocomplete.bindTo('bounds', map);
 		setTimeout('$("body").css("visibility","visible");', 1000);
         autocomplete.addListener('place_changed', function() {
+		  var place = autocomplete.getPlace();
+          if (!place.geometry) {
+           return;
+          }
+		  if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+          } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(12); 
+			
+          } 
+			var center = place.geometry.location;
+			mycenter = center;
+			getReverseGeocodingData(center.lat(), center.lng());
+			geoQuery.updateCriteria({center: [center.lat(), center.lng()],  radius: 30});
+			if(path) path.setMap(null);
+			for (var i = 0; i < hotSpotMapMarkers.length; i++)
+			hotSpotMapMarkers[i].setMap(null);
+			if(path) path.setMap(null);
+			document.getElementById("rqstgist").style.display="none";
+			document.getElementById("pckgctr").innerHTML="Loading...";
+			var address = ''; rsltshow = 0; google.maps.event.trigger(map, 'resize');
+			$("#tflbckg").css("background-image", "");
+			$('.close-initModal').trigger('click');		
+			document.getElementById("mnuitm2").style.display="block";
+			document.getElementById("mnuitm1").style.display="block";
+			if (place.address_components) {
+            address = [
+              (place.address_components[0] && place.address_components[0].short_name || ''),
+              (place.address_components[1] && place.address_components[1].short_name || ''),
+              (place.address_components[2] && place.address_components[2].short_name || '')
+            ].join(' ');
+			
+          }          
+        });
+	}
+	
+	function callauto(){		
+		var autocomplete = new google.maps.places.Autocomplete(document.getElementById('searchloc'));
+        autocomplete.bindTo('bounds', map);
+		autocomplete.addListener('place_changed', function() {
 		  var place = autocomplete.getPlace();
           if (!place.geometry) {
            return;

@@ -371,12 +371,11 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 	function drawroute(picklat,picklng,delvlat,delvlng){	
 	for (var i = 0; i < hotSpotMapMarkers.length; i++)
     hotSpotMapMarkers[i].setMap(null);
-	map.setCenter(new google.maps.LatLng(picklat,picklng));
 	var flightPlanCoordinates = [{lat:picklat,lng:picklng},{lat:delvlat,lng:delvlng}];
 	var latlngbounds = new google.maps.LatLngBounds();
 	latlngbounds.extend(new google.maps.LatLng(picklat,picklng));
 	latlngbounds.extend(new google.maps.LatLng(delvlat,delvlng));
-	map.setCenter(latlngbounds.getCenter()); map.fitBounds(latlngbounds);
+	
 	var polyLine = new google.maps.Polyline({
     path: flightPlanCoordinates,
     strokeColor: "#2bb1de",
@@ -400,6 +399,8 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 	icon: "package.png",
     map: map
 	}));
+	map.fitBounds(latlngbounds);
+	map.setCenter(latlngbounds.getCenter()); 
 	}
 	
 	function showreslt(i){

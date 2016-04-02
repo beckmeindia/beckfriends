@@ -18,7 +18,65 @@
 			window.location="https://www.beckme.com/friends/";
 			}
 		</script>
-	<style>	
+	<style>
+#searchlocintr::-webkit-input-placeholder {
+   color: #fff;
+}
+
+#searchlocintr:-moz-placeholder { /* Firefox 18- */
+   color: #fff;  
+}
+
+#searchlocintr::-moz-placeholder {  /* Firefox 19+ */
+   color: #fff;  
+}
+
+#searchlocintr:-ms-input-placeholder {  
+   color: #fff;  
+}
+#searchlocintr {
+  display: inline-block;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 50%;
+  cursor: I-beam;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 0 20px;
+  overflow: hidden;
+  border: none;
+  -webkit-border-radius: 21px;
+  border-radius: 21px;
+ color: rgba(140, 140, 140, 1);
+  text-decoration: normal;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  background: rgba(0, 0, 0, 0.7);
+  -webkit-box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.5) inset;
+  box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.5) inset;
+  -webkit-transition: all 502ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+  -moz-transition: all 502ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+  -o-transition: all 502ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+  transition: all 502ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+}
+
+#searchlocintr:focus {
+  width: 70%;
+  cursor: default;
+  padding: -13px 20px 0;
+  color: rgba(255, 255, 255, 1);
+  -webkit-transition: all 601ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+  -moz-transition: all 601ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+  -o-transition: all 601ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+  transition: all 601ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+}
+
+input:focus {
+  outline: none;
+}
 	select {
       -webkit-appearance: none;
       -moz-appearance: none;
@@ -26,10 +84,10 @@
 	  }
 	.pac-container{
 	margin-top:15px;font-family:'Maven Pro', sans-serif;
-	z-index:9999;
+	z-index:9999;text-align:center;
 	}
 	.pac-item{
-	padding:10px
+	padding:10px;text-align:center;
 	}		
 	.pac-icon{
 	display:none
@@ -81,6 +139,7 @@
 	callauto();
 	callauto2();
 	callauto3();
+	callauto4();
   	}
 	google.maps.event.addDomListener(window, 'load', initMap);	   
 	
@@ -147,7 +206,7 @@
   <script src="index.js"></script>
 		<div class="container">
 			<ul id="gn-menu" class="gn-menu-main" style="border-bottom:1px solid #c6d0da;position: absolute;z-index:999;">				
-				<li class="gn-trigger" style="border-right:none;">
+				<li id="mnuitm1" class="gn-trigger" style="border-right:none;display:none">
 					<a class="gn-icon gn-icon-menu"></a>
 					<nav class="gn-menu-wrapper">
 						<div class="gn-scroller">
@@ -163,8 +222,8 @@
 					</nav>
 				</li>
 				<li style="padding-left:20px;padding-right:60px;font-size:24px;font-family: 'Maven Pro', sans-serif;">BECK <span style="color:#ff0000;">Friends</span></li>
-				<li style="padding-left:20px;padding-right:10px;font-size:18px;border-right:none;width:50%"><img src="search.png" style="width:28px;margin-top:17px;display:inline;position:absolute;"/><input placeholder="Search Location" type="search" id="searchloc" class="gn-search" style="padding-left:40px;width:100%;display:inline"></li>
-				<li style="padding-left:40px;padding-right:40px;font-size:18px;float:right" ><span id="namehdr" style="display:none;vertical-align: middle;margin-top:-5px"><img id="profile_img" style="margin-top:-10px;margin-right:15px;border-radius:50%;width:40px;height:40px;vertical-align: middle"/></span> <md-button onclick="befrlogin()" id="signleft" class="md-raised md-primary" style="margin-top:-5px"><md-icon md-svg-icon="fb.svg" style="padding:0"></md-icon> Login</md-button></li>				
+				<li id="mnuitm2" style="padding-left:20px;padding-right:10px;font-size:18px;border-right:none;width:50%;display:none"><img src="search.png" style="width:28px;margin-top:17px;display:inline;position:absolute;"/><input placeholder="Search Location" type="search" id="searchloc" class="gn-search" style="padding-left:40px;width:100%;display:inline"></li>
+				<li style="padding-left:40px;padding-right:40px;font-size:18px;float:right;" ><span id="namehdr" style="display:none;vertical-align: middle;margin-top:-5px"><img id="profile_img" style="margin-top:-5px;margin-right:15px;border-radius:50%;width:40px;height:40px;vertical-align: middle"/></span> <md-button onclick="befrlogin()" id="signleft" class="md-raised md-primary" style="margin-top:-5px"><md-icon md-svg-icon="fb.svg" style="padding:0"></md-icon> Login</md-button></li>				
 			</ul>			
 		</div>		
 		<div layout="row" style="padding-top:60px;height:100%;background:#cccccc"  ng-controller="AppCtrl" ng-cloak="" class="carddemoInCardActions">
@@ -415,8 +474,10 @@
 		</md-content>
         </div>
     </div>
-	<div id="initModal" style="background: url(bckg.jpg) #39403D no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
+	<div id="initModal" style="background: url(bckg.jpg) #000 no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
 	<div class="close-initModal" style="display:none">CLOSE</div> 
-	<div style="text-align:center;color:#888;font-size:16px;width:80%; height: 600px; position:absolute; left:0; right:0; top:50%; bottom:0; margin:auto; max-width:100%; max-height:100%; overflow:auto;"></div>
+	<div style="text-align:center;color:#888;font-size:16px;width:80%; height: 600px; position:absolute; left:0; right:0; top:50%; bottom:0; margin:auto; max-width:100%; max-height:100%; overflow:auto;">
+	 <input id="searchlocintr"  placeholder="Search Your Location to Get Started" type="search" style="text-align:center;font-size:20px;border:none;border-radius:5px;padding: 15px 20px;width:70%;display:inline">
+	</div>
 	</body>
 </html>
