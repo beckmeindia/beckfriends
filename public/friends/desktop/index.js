@@ -440,8 +440,7 @@ $(document).ready(function(){
 			else{
 				return parseInt(Number(String(b.fare).split(" ")[1])) - parseInt(Number(String(a.fare).split(" ")[1]));
 			}		
-		});
-		
+		});		
 		nofkeys = arrPckgs.length;
 		if(nofkeys==0){
 			document.getElementById("pckgctr").innerHTML = "No Requests Found";
