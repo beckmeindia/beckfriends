@@ -396,6 +396,10 @@ $(document).ready(function(){
 	$("#demo03").animatedModal({modalTarget:'initModal',animationDuration:'.3s',animatedIn:'none',animatedOut:'fadeOutUp'});
 	$("#demo03").trigger('click');	
 	shwdetls();
+	$('#cloudz').css('background-image','url(bckg.jpg)')
+  .waitForImages(function() {
+   document.getElementById("cloudz").style.display="block"
+  }, $.noop, true);
             var win = $(window),
                 foo = $('#typer');
 
@@ -870,7 +874,6 @@ $(document).ready(function(){
     map: map
 	}));
 	map.fitBounds(latlngbounds);
-	map.setCenter(latlngbounds.getCenter()); 	
 	}
 	
 	function shwdetls(){
@@ -1063,7 +1066,7 @@ $(document).ready(function(){
 
 	function callauto(){		
 		var autocomplete = new google.maps.places.Autocomplete(document.getElementById('searchloc'));
-        autocomplete.bindTo('bounds', map);
+        autocomplete.bindTo('bounds', map); 			
 		autocomplete.addListener('place_changed', function() {
 		  var place = autocomplete.getPlace();
           if (!place.geometry) {

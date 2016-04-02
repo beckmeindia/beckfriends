@@ -400,7 +400,6 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
     map: map
 	}));
 	map.fitBounds(latlngbounds);
-	map.setCenter(latlngbounds.getCenter()); 
 	}
 	
 	function showreslt(i){
