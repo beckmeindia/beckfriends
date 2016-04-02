@@ -13,7 +13,7 @@
 		<script src="all.js"></script>
 		 <script>
 			var md = new MobileDetect(window.navigator.userAgent);
-			if (md.mobile() == null){}
+			if (md.mobile() === undefined || md.mobile() === null){}
 			else{
 			window.location="https://www.beckme.com/friends/";
 			}
