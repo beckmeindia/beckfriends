@@ -1093,6 +1093,7 @@ $(document).ready(function(){
 			$("#tflbckg").css("background-image", "");
 			$('.close-initModal').trigger('click');	
 			document.getElementById("mnuitm").style.display="block";
+			document.getElementById("tgnmlyn").style.paddingLeft = "20px";
 			if (place.address_components) {
             address = [
               (place.address_components[0] && place.address_components[0].short_name || ''),
