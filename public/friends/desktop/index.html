@@ -20,10 +20,118 @@
 			}
 		</script>
 	<style>
-	/**
- * Paper Plane
- */
-/*Paper Plane: Container*/
+	
+.os-phrases h2.openz {
+	font-family: 'Dosis', 'Lato', sans-serif;
+	font-size: 35px;
+	font-weight: 200;
+	height: 200px;
+	width: 100%;
+	overflow: hidden;
+	text-transform: uppercase;
+	padding: 0;
+	margin: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	letter-spacing: 14px;
+	text-align: center;
+}
+.os-phrases h2.openz,
+.os-phrases h2.openz > span {
+	height: 100%;
+	/* Centering with flexbox */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.os-phrases h2.openz > span {
+	margin: 0 15px;
+}
+.os-phrases h2.openz > span > span {
+	display: inline-block;
+	perspective: 1000px;
+	transform-origin: 50% 50%;
+}
+.os-phrases h2.openz > span > span > span {
+	display: inline-block;
+	color: hsla(0,0%,0%,0);
+	transform-style: preserve-3d;
+	transform: translate3d(0,0,0);
+	animation: OpeningSequence 5.2s linear forwards;
+}
+.os-phrases h2.openz:nth-child(2) > span > span > span {
+	animation-delay: 5s;
+}
+
+.os-phrases h2.openz:nth-child(3) > span > span > span {
+	animation-delay: 10s;
+}
+
+.os-phrases h2.openz:nth-child(4) > span > span > span {
+	animation-delay: 15s;
+}
+
+.os-phrases h2.openz:nth-child(5) > span > span > span {
+	font-size: 30px;
+	animation-delay: 21s;
+	animation-duration: 8s;
+}
+
+.os-phrases h2.openz:nth-child(6) > span > span > span {
+	animation-delay: 30s;
+}
+
+.os-phrases h2.openz:nth-child(7) > span > span > span {
+	animation-delay: 34s;
+}
+@keyframes OpeningSequence {
+	0% {
+		text-shadow: 0 0 50px #fff;
+		letter-spacing: 80px;
+		opacity: 0.2;
+		transform: rotateY(-90deg);
+	}
+	50% {
+		text-shadow: 0 0 1px #fff;
+		letter-spacing: 14px;
+		opacity: 0.8;
+		transform: rotateY(0deg);
+	}
+	85% {
+		text-shadow: 0 0 1px #fff;
+		opacity: 0.8;
+		transform: rotateY(0deg) translateZ(100px);
+	}
+	100% {
+		text-shadow: 0 0 10px #fff;
+		opacity: 0;
+		transform: translateZ(130px);
+		pointer-events: none;
+	}
+}
+.os-phrases h2.openz:nth-child(8) > span > span > span {
+	font-size: 30px;
+	animation: FadeIn 4s linear 40s forwards;
+}
+
+@keyframes FadeIn { 
+	0% {
+		opacity: 0;
+		text-shadow: 0 0 50px #fff;
+	}
+	100% {
+		opacity: 0.8;
+		text-shadow: 0 0 1px #fff;
+	}
+}
+
+.os-phrases h2.openz:first-child .word3,
+.os-phrases h2.openz:nth-child(2) .word2,
+.os-phrases h2.openz:nth-child(4) .word2 {
+	font-weight: 600;
+}
 .plane-container {
   width: 60%;
   margin: 0px auto;
@@ -33,7 +141,7 @@
  /*Paper Plane: Image*/
 .plane {
   width: 100%;
-  height: 30px;
+  height: 40px;
 }
 
 /*Paper Plane: Animation*/
@@ -685,19 +793,28 @@ input:focus {
 	<div id="initModal">
 	<div class="close-initModal" style="display:none">CLOSE</div> 	
 	<div id="cloudz" style="display:none;text-align:center;color:#888;font-size:16px;width:100%; height: 600px; position:absolute; left:0; right:0; top:0; bottom:0; margin:auto; max-width:100%; max-height:100%; overflow:auto; background-color:#000; background-repeat: no-repeat;background-attachment: fixed;background-position: center;  -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
-	<div class="plane-container">
-<a href="http://customer.io/" target="_blank">
+	<!--div class="plane-container">
 <svg version="1.1" x="0px" y="0px"
 width="1131.53px" height="379.304px" viewBox="0 0 1131.53 379.304" enable-background="new 0 0 1131.53 379.304"
 xml:space="preserve" class="plane">
-<polygon fill="#D8D8D8" points="72.008,0 274.113,140.173 274.113,301.804 390.796,221.102 601.682,367.302 1131.53,0.223  "/>
-<polygon fill="#C4C4C3" points="1131.53,0.223 274.113,140.173 274.113,301.804 390.796,221.102   "/>
-</svg></a>
-</div>
+<polygon fill="#2c5b62" points="72.008,0 274.113,140.173 274.113,301.804 390.796,221.102 601.682,367.302 1131.53,0.223  "/>
+<polygon fill="#14292c" points="1131.53,0.223 274.113,140.173 274.113,301.804 390.796,221.102   "/>
+</svg>
+</div-->
 	<div class="sky">
     <div class="clouds_one"></div>
     <div class="clouds_two"></div>
     <div class="clouds_three"></div>
+	</div>
+	<div class="os-phrases" id="os-phrases">
+	<h2 class="openz">Send anything anywhere</h2>
+	<h2 class="openz">Earn as you travel</h2>
+	<h2 class="openz">Check Live Requests</h2>
+	<h2 class="openz">Anywhere in the world</h2>
+	<h2 class="openz">Add packages of any size</h2>
+	<h2 class="openz">Get packages delivered</h2>
+	<h2 class="openz">With verified profiles</h2>
+	<h2 class="openz">Signup & start Earning</h2>
 	</div>
 	</div>
 	</div>

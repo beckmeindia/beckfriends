@@ -390,6 +390,7 @@ geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
 })
 
 $(document).ready(function(){
+	$("#os-phrases > h2.openz").lettering('words').children("span").lettering().children("span").lettering();
     $('#scrollDefaultExample').timepicker({ 'scrollDefault': 'now' });
 	$("#demo01").animatedModal({animationDuration:'.3s'});
 	$("#demo02").animatedModal({modalTarget:'acceptedModal',animationDuration:'.3s'});
