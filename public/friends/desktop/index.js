@@ -512,6 +512,44 @@ $(document).ready(function(){
 		if(loggedin==1){swal({   title: "Change number",   text: "Your present registered number is +"+usrphone+". Are you sure you want to change it?", html: true,   type: "warning",   showCancelButton: true,   confirmButtonColor: "#2bb1de",   confirmButtonText: "Change it",   closeOnConfirm: false }, function(){ smsending() })}else{befrlogin()};
 	}
 	
+	function otpintcall(number){
+	otp = Math.floor((Math.random() * 900) + 1000);	
+	$.ajax({
+      url: 'https://www.beckme.in/otpint.php',
+      data:
+      {
+        phoneNumber : number,
+        randomNumber : otp + ' is your OTP (One Time Password) for Beck. Please use the password to complete your Registration.'
+      },
+      error: function(error) {
+     // console.log(JSON.stringify(error));
+        },
+      success: function(data) {
+       //console.log(JSON.stringify(data));
+       },
+      type: 'POST'
+	});
+	}
+		
+	function otpcall(number){
+	otp = Math.floor((Math.random() * 900) + 1000);
+	$.ajax({
+      url: 'https://www.beckme.in/otp.php',
+      data:
+      {
+        phoneNumber : number,
+        randomNumber : otp + ' is your OTP (One Time Password) for Beck. Please use the password to complete your Registration.'
+      },
+      error: function(error) {
+      //console.log(JSON.stringify(error));
+        },
+      success: function(data) {
+       //console.log(JSON.stringify(data));
+       },
+      type: 'POST'
+	});
+	}
+	
 	function smsending(){
 		if(loggedin==1){
 				swal({title: "Mobile Verification", text: "", type: "input", closeOnConfirm: false, animation: "slide-from-top",   inputPlaceholder: "Your 10-digit mobile number" }, 				
